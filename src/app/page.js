@@ -6,7 +6,7 @@ export default function Login() {
       <form className="w-full max-w-sm ml-[340px]">
         <div className="bg-white shadow-lg w-[900px] h-[600px] p-8 mx-auto flex flex-col justify-center items-center">
           <div className="mb-20 -mt-20">
-            <img
+            <Image
               src={Logo}
               className="w-60"
               alt="Logo"
