@@ -1,6 +1,6 @@
 // Import React dan useState
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Logo from "@/../../public/images/logo.png";
 // Komponen TableKelas
@@ -163,9 +163,17 @@ const TablePelajaran = () => {
 const Navbar = () => {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000); // Update every 1000 milliseconds (1 second)
+
+    // Cleanup the interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []); // Empty dependency array to run the effect only once on mount
+
   const formatDateTime = (date) => {
     const roundedDate = new Date(date);
-    roundedDate.setSeconds(0);
 
     const dateOptions = {
       weekday: "long",
@@ -177,6 +185,7 @@ const Navbar = () => {
     const timeOptions = {
       hour: "numeric",
       minute: "numeric",
+      second: "numeric",
     };
 
     const dateString = roundedDate.toLocaleString("id-ID", dateOptions);
